@@ -43,16 +43,16 @@ class ProjectController extends Controller
     }
     public function updateOneAction(Request $request)
     {
-      dd($project); ici ca deconne !!!!!
-      $project = Project::find($id);
+      $project = Project::find($request->id);
+      dd($request);
       $project->name = $request->name;
       $project->content = $request->content;
       $project->duration = $request->duration;
       $project->budget = $request->budget;
-      $project->gender = $request->gender;
+      $project->state_id = $request->state;
       $project->save();
-      $project->colors()->detach();
-      $project->colors()->attach($request->colors);
+      $project->tags()->detach();
+      $project->tags()->attach($request->tags);
       return redirect('/liste');
     }
 }
